@@ -30,16 +30,19 @@ export default function AvailableCoursesPanel({
             {...course}
             key={course.id}
             actions={
-              isAuth ? (
-                <Button
-                  onClick={() => {
-                    setCourse(course)
-                    setShowAppProcess(true)
-                  }}
-                >
-                  Enroll
-                </Button>
-              ) : undefined
+              <div>
+                {isAuth ? (
+                  <Button
+                    className="h-12 w-4"
+                    onClick={() => {
+                      setCourse(course)
+                      setShowAppProcess(true)
+                    }}
+                  >
+                    Enroll
+                  </Button>
+                ) : undefined}
+              </div>
             }
           />
         ))}
