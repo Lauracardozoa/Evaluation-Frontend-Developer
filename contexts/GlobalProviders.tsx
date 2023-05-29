@@ -1,4 +1,5 @@
 'use client'
+import AuthProvider from '@/contexts/AuthProvider'
 import { SWRConfig } from 'swr'
 
 type GlobalProvidersProps = {
@@ -19,7 +20,7 @@ export default function GlobalProviders({ children }: GlobalProvidersProps) {
           fetch(resource, init).then((res) => res.json()),
       }}
     >
-      {children}
+      <AuthProvider>{children}</AuthProvider>
     </SWRConfig>
   )
 }

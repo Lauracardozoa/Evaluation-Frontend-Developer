@@ -1,4 +1,5 @@
 'use client'
+import { useAuth } from '@/contexts/AuthProvider'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { useState } from 'react'
@@ -10,7 +11,7 @@ import { Button, Navbar } from '../flowbite-react'
  * Navigation bar of the application
  */
 export default function NavBar() {
-  const isAuth = false
+  const { isAuth } = useAuth()
   const pathname = usePathname()
   const [showRegisterLogin, setShowRegisterLogin] = useState(false)
   const [showLogout, setShowLogout] = useState(false)

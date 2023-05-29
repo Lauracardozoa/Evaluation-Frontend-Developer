@@ -49,7 +49,7 @@ export default function RegisterLoginModal({
           </span>
         </div>
         <div className="grid grid-cols-2 divide-x mt-8">
-          {active === 'login' ? <LoginForm /> : <RegisterForm />}
+          {active === 'login' ? <LoginForm onSuccess={onClose} /> : <RegisterForm />}
           <div className="flex px-8">
             <div className="m-auto w-full inline-flex flex-col gap-y-2">
               <Button color="light">

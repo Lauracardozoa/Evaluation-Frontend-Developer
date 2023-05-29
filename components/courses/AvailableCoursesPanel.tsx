@@ -1,4 +1,5 @@
 'use client'
+import { useAuth } from '@/contexts/AuthProvider'
 import Course from '@/entities/course'
 import { useState } from 'react'
 import ApplicationProcessModal from './ApplicationProcessModal'
@@ -18,9 +19,9 @@ type AvailableCoursesPanelProps = {
 export default function AvailableCoursesPanel({
   courses,
 }: AvailableCoursesPanelProps) {
+  const { isAuth } = useAuth()
   const [course, setCourse] = useState<Course | null>(null)
   const [showAppProcess, setShowAppProcess] = useState(false)
-  const isAuth = false
   return (
     <>
       <h1 className="text-lg font-bold my-4">Available Courses</h1>
@@ -33,7 +34,7 @@ export default function AvailableCoursesPanel({
               <div>
                 {isAuth ? (
                   <Button
-                    className="h-12 w-4"
+                    className="h-12 w-40"
                     onClick={() => {
                       setCourse(course)
                       setShowAppProcess(true)

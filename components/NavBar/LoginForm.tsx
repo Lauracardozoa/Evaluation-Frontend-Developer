@@ -1,20 +1,28 @@
-import LoginUserDto from '@/dtos/login-user-dto'
-import { useState } from 'react'
+import LoginUserDto from '@/dtos/users/login-user-dto'
 import { useForm } from 'react-hook-form'
-import { Alert, Button, Label, TextInput } from '../flowbite-react'
+import { Button, Label, TextInput } from '../flowbite-react'
+import { useAuth } from '@/contexts/AuthProvider'
+
+type LoginFormProps = {
+  /**
+   * Function to execute when the login is successful
+   */
+  onSuccess?(): void
+}
 
 /**
  * Form to login a user
  */
-export default function LoginForm() {
-  const [error, setError] = useState(false)
-  const { handleSubmit, register } = useForm<LoginUserDto>()
+export default function LoginForm({ onSuccess }: LoginFormProps) {
+  const { signin } = useAuth()
+  const { handleSubmit, register, reset } = useForm<LoginUserDto>()
   return (
     <form
       className="px-8"
-      onSubmit={handleSubmit((data) => {
-        // TODO: Make login
-        setError(true)
+      onSubmit={handleSubmit(() => {
+        signin()
+        onSuccess?.()
+        reset()
       })}
     >
       <div className="my-4">
@@ -25,14 +33,7 @@ export default function LoginForm() {
           id="email"
           autoComplete="email"
           placeholder="Enter your email"
-          {...register('email', {
-            required: true,
-            onChange() {
-              if (error) {
-                setError(false)
-              }
-            },
-          })}
+          {...register('email', { required: true })}
         />
       </div>
       <div className="my-4">
@@ -43,21 +44,9 @@ export default function LoginForm() {
           id="password"
           autoComplete="current-password"
           placeholder="Enter your password"
-          {...register('password', {
-            required: true,
-            onChange() {
-              if (error) {
-                setError(false)
-              }
-            },
-          })}
+          {...register('password', { required: true })}
         />
       </div>
-      {error && (
-        <Alert color="failure" className="my-4">
-          Email or password is incorrect
-        </Alert>
-      )}
       <Button type="submit" className="w-full">
         Continue
       </Button>

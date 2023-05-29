@@ -1,4 +1,4 @@
-import CreateUserDto from '@/dtos/create-user-dto'
+import CreateUserDto from '@/dtos/users/create-user-dto'
 import countries from '@/utils/countries'
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'

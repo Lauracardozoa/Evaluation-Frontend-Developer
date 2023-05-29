@@ -1,5 +1,5 @@
 import Footer from '@/components/Footer'
-import GlobalProviders from '@/components/GlobalProviders'
+import GlobalProviders from '@/contexts/GlobalProviders'
 import NavBar from '@/components/NavBar'
 import './normalize.css'
 import './globals.css'
